@@ -7,9 +7,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/create-event/:type', function(req, res, next){
-	if(req.params.type == 1){
-		res.render('index');
-	}
 });
 
 module.exports = router;
