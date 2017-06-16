@@ -1,0 +1,46 @@
+extends ../layout/main-layout
+
+block content
+	.container
+		h1 Sign Up!
+		form#reg-form
+			div.row
+				div.col-md-6
+					div.form-group
+						label(for="fname") First Name:
+						input#fname.form-control(type="text", name="user_firstName")
+				div.col-md-6
+					div.form-group
+						label(for="lname") Last Name:
+						input#lname.form-control(type="text", name="user_lastName")
+			div.form-group
+				label(for="email") Email Address:
+				input#email.form-control(type="email", name="user_emailAddress")
+			div.form-group
+				label(for="pwd") Password:
+				input#pwd.form-control(type="password", name="user_password")
+			button#btn-submit.btn.btn-default(type="submit") Submit
+
+block body-scripts
+	script.
+		$(function() {
+		    //hang on event of form with id=myform
+		    $("#reg-form").submit(function(e) {
+
+		        //prevent Default functionality
+		        e.preventDefault();
+
+		        //do your own request an handle the results
+		        $.ajax({
+		            url: '/api/register',
+		            type: 'post',
+		            dataType: 'application/json',
+		            data: $("#reg-form").serialize(),
+		            success: function(response){
+		            	console.log(response);
+		            }
+		        });
+
+		    });
+
+		});

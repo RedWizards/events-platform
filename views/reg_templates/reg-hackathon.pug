@@ -1,0 +1,13 @@
+extends layout/reg-layout
+
+block form
+	from
+		div.form-group
+			label(for="email") Email Address:
+			input#email.form-control(type="email")
+		div.form-group
+			label(for="pwd") Password:
+			input#pwd.form-control(type="email")
+		div.checkbox
+			label #[input(type="checkbox") Remember Me]
+		button.btn.btn-default(type="submit") Submit

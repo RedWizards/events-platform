@@ -1,0 +1,37 @@
+extends ../layout/main-layout
+
+block content
+	.container
+		h1 Log In!
+		form#login-form
+			div.form-group
+				label(for="email") Email Address:
+				input#email.form-control(type="email", name="user_emailAddress")
+			div.form-group
+				label(for="pwd") Password:
+				input#pwd.form-control(type="password", name="user_password")
+			button#btn-submit.btn.btn-default(type="submit") Submit
+
+block body-scripts
+	script.
+		$(function() {
+		    //hang on event of form with id=myform
+		    $("#login-form").submit(function(e) {
+
+		        //prevent Default functionality
+		        e.preventDefault();
+
+		        //do your own request an handle the results
+		        $.ajax({
+		            url: '/api/login',
+		            type: 'post',
+		            dataType: 'application/json',
+		            data: $("#login-form").serialize(),
+		            success: function(response){
+		            	console.log(response);
+		            }
+		        });
+
+		    });
+
+		});
