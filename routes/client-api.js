@@ -34,21 +34,28 @@ router.post('/login', function(req, res, next){
 
 	db.viewUser(data)
 		.then(result => {
-			var similar = bcrypt.compareSync(data.user_password, result.user_password); 
+
+			if(result) {
+				var similar = bcrypt.compareSync(data.user_password, result.user_password); 
 			
-			if(similar){
-				session = req.session;
-				session.user_id = result.id;
-				res.redirect('/');
-			}else{
-				//redirect to login page with error
+				if(similar){
+					session = req.session;
+					session.user_id = result.id;
+					res.redirect('/home');
+				}else{
+					//Incorrect Password
+					res.redirect('/login');
+				}
 			}
+			else{
+				//User Not Found
+				res.redirect('/login');
+			}
+
 		})
 		.catch(err => {
 			console.log(err);
-			res.status(400).json({
-				error: "Bad Request"
-			});
+			res.status(400).json({'err' : err});
 		});
 });
 

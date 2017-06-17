@@ -19,7 +19,7 @@ app.set('view engine', 'pug');
 
 //set up session
 app.use(session({
-  secret: 'redwizard-T3chEvents'
+  secret: 'redwizard-T3chEvents',
 }));
 
 // uncomment after placing your favicon in /public

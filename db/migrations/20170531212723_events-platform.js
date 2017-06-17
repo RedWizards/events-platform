@@ -1,4 +1,7 @@
 exports.up = function(knex, Promise) {
+	
+	knex.raw('CREATE EXTENSION "uuid-ossp";');
+
 	return knex.schema
 		.createTable('user', function(table){
 			table.uuid('id').defaultTo(knex.raw('uuid_generate_v4()')).primary();

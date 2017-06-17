@@ -15,8 +15,22 @@ router.get('/login', function(req, res, next){
 });
 
 router.get('/logout', function(req, res, next){
-	
-})
+	req.session.destroy(err => {
+		if(err) {
+			console.log(err);
+			res.status(400).json({
+				error: err
+			});
+	  	}
+	  	else {
+	    	res.redirect('/');
+	  	}
+	});
+});
+
+router.get('/home', function(req, res, next) {
+	res.render('client/home');
+});
 
 
 module.exports = router;
