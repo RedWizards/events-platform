@@ -23,9 +23,8 @@ router.post('/register', function(req, res, next) {
 		})
 		.catch(err => {
 			console.log(err);
-			res.status(400).json({
-				error: err
-			});
+			//redirect to register with values
+			res.redirect('/register');
 		});
 });
 
@@ -57,20 +56,6 @@ router.post('/login', function(req, res, next){
 			console.log(err);
 			res.status(400).json({'err' : err});
 		});
-});
-
-router.get('/logout', function(req, res, next){
-	req.session.destroy(err => {
-		if(err) {
-			console.log(err);
-			res.status(400).json({
-				error: err
-			});
-	  	}
-	  	else {
-	    	res.redirect('/');
-	  	}
-	});
 });
 
 module.exports = router;

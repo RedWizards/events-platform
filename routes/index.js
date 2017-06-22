@@ -15,6 +15,7 @@ router.get('/login', function(req, res, next){
 });
 
 router.get('/logout', function(req, res, next){
+	console.log(req.session);
 	req.session.destroy(err => {
 		if(err) {
 			console.log(err);
@@ -23,6 +24,7 @@ router.get('/logout', function(req, res, next){
 			});
 	  	}
 	  	else {
+	  		console.log(req.session);
 	    	res.redirect('/');
 	  	}
 	});
