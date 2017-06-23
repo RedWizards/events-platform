@@ -6,10 +6,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
+var auth = require('./routes/auth');
 var client = require('./routes/client-api');
 var admin = require('./routes/admin-api');
 
 var session = require('express-session')
+var passport = require('./auth/local');
 
 var app = express();
 
@@ -19,8 +21,12 @@ app.set('view engine', 'pug');
 
 //set up session
 app.use(session({
-  secret: 'redwizard-T3chEvents',
+  secret: 'RedWizards-T3chEvents',
+  resave: false,
+  saveUninitialized: true
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -31,6 +37,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/auth', auth);
 app.use('/api', client);
 app.use('/admin-api', admin);
 

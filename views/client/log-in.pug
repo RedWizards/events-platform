@@ -7,7 +7,7 @@ block content
 			div.alert.alert-warning
 				strong err.msg
 
-		form#login-form(action='/api/login', method='post')
+		form#login-form(action='/auth/login', method='post')
 			div.form-group
 				label(for="email") Email Address:
 				input#email.form-control(type="email", name="user_emailAddress")
