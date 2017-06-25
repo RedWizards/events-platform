@@ -16,25 +16,11 @@ router.get('/login', function(req, res, next){
 	res.render('client/log-in');
 });
 
-router.get('/logout', authHelpers.loginRedirect, function(req, res, next){
-	console.log(req.session);
+router.get('/logout', authHelpers.loginRequired, function(req, res, next){
 	req.logout();
-	console.log(req.session);
 	res.status(200).json({
-		status: 'Success'
+		status: 'success'
 	});
-	// req.session.destroy(err => {
-	// 	if(err) {
-	// 		console.log(err);
-	// 		res.status(400).json({
-	// 			error: err
-	// 		});
-	//   	}
-	//   	else {
-	//   		console.log(req.session);
-	//     	res.redirect('/');
-	//   	}
-	// });
 });
 
 router.get('/home', function(req, res, next) {

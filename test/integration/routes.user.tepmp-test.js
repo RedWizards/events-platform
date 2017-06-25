@@ -15,8 +15,8 @@ passportStub.install(server);
 describe('GET /user', function(){
 	it('should register a success', (done) => {
 		passportStub.login({
-			user_emailAddress: 'ebcedillo@gmail.com',
-			user_password: 'T3chEvents'
+			user_emailAddress: 'redperiabras@gmail.com',
+			user_password: 'asdf'
 		});
 
 		chai.request(server)
@@ -36,7 +36,7 @@ describe('GET /user', function(){
 			.end((err, res) => {
 				should.exist(err);
 				res.redirects.length.should.eql(0);
-				res.status.should.eql(401);
+				res.status.should.eql(404);
 				res.type.should.eql('application/json');
 				res.body.status.should.eql('Please Log In');
 				done();

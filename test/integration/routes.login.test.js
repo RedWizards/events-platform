@@ -18,7 +18,7 @@ describe('POST /auth/login', function(){
 			.post('/auth/login')
 			.send({
 				user_emailAddress: 'redperiabras@gmail.com', 
-				user_password: '$2a$10$ZlT6wMb4UQ19SYb8p9kbU..FE.ZAJhnijPat4PYz.AFp9lZW/Ikkq'
+				user_password: 'asdf'
 			})
 			.end((err, res) => {
 				should.not.exist(err);
@@ -40,7 +40,7 @@ describe('POST /auth/login', function(){
 			.end((err, res) => {
 				should.exist(err);
 				res.redirects.length.should.eql(0);
-				res.status.should.eql(404);
+				res.status.should.eql(400);
 				res.type.should.eql('application/json');
 				res.body.status.should.eql('User not found');
 				done();
@@ -49,19 +49,19 @@ describe('POST /auth/login', function(){
 
 	it('should throw an error if a user is already logged in', (done) => {
 		passportStub.login({
-			user_emailAddress: 'ebcedillo@gmail.com',
-			user_password: 'T3chEvents'
+			user_emailAddress: 'redperiabras@gmail.com',
+			user_password: '$2a$10$ZlT6wMb4UQ19SYb8p9kbU..FE.ZAJhnijPat4PYz.AFp9lZW/Ikkq'
 		});
 		chai.request(server)
 			.post('/auth/login')
 			.send({
-				user_emailAddress: 'ebcedillo@gmail.com',
-				user_password: 'T3chEvents'
+				user_emailAddress: 'redperiabras@gmail.com',
+				user_password: 'asdf'
 			})
 			.end((err, res) => {
 				should.exist(err);
 				res.redirects.length.should.eql(0);
-				res.status.should.eql(401);
+				res.status.should.eql(400);
 				res.type.should.eql('application/json');
 				res.body.status.should.eql('You are already logged in');
 				done();

@@ -1,35 +1,44 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-var init = require('./passport')(passport);
 var knex = require('../db/knex');
-
 var authHelpers = require('./_helpers');
 
-const options = {};
+passport.serializeUser((user, done) => {
+	done(null, user.id);
+});
 
-passport.use(new LocalStrategy(options, (username, password, done) => {
+passport.deserializeUser((id, done) => {
+	knex('user').where({id: id}).first()
+		.then((user) => {
+			done(null, user);
+		})
+		.catch((err) => {
+			done(err, null);
+		});
+});
+
+passport.use('local', new LocalStrategy({
+	usernameField: 'user_emailAddress',
+	passwordField: 'user_password'
+}, (user_emailAddress, user_password, done) => {
+
 	//check to see if email exists
-	knex('user').where({user_emailAddress: username}).first()
-		.then((err, user) => {
-
-			console.log(user);
-
-			if(err)
-				return done(err);
-
+	knex('user').where({'user_emailAddress': user_emailAddress}).first()
+		.then((user) => {
 			if(!user)
 				return done(null, false);
 
-			if(!authHelpers.comparePass(password, user.user_password))
+			if(!authHelpers.comparePass(user_password, user.user_password))
 				return done(null, false);
 			else
 				return done(null, user);
 		
 		})
 		.catch((err) => {
+			console.log(err);
 			return done(err);
-		})
+		});
 }));
 
 module.exports = passport;

@@ -1,1 +1,1 @@
-set DEBUG=events-platform:*,knex:*
+set DEBUG=events-platform:*,knex:*,passport:*

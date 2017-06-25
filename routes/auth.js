@@ -2,49 +2,47 @@ var express = require('express');
 var router = express.Router();
 
 var authHelpers = require('../auth/_helpers');
-var passport = require('../auth/local');
+var userHelpers = require('../db/services/users');
 
-router.post('/register', authHelpers.loginRedirect, (req, res, next) => {
-	return authHelpers.createUser(req, res)
-		.then((response) => {
-			passport.authenticate('local', (err, user, info) => {
-				if(user){
-					handleResponse(res, 200, 'success');
-				}
-			})(req, res, next);
-		})
-		.catch((err) => {
-			console.log(err);
-			handleResponse(res, 500, 'error');
-		});
-});
-
-router.post('/login', authHelpers.loginRedirect, (req, res, next) => {
-	passport.authenticate('local', (err, user, info) => {
-		if(err){
-			handleResponse(res, 500, 'error');
-		}
-
-		if(!user){
-			handleResponse(res, 400, 'User not found');
-		}
-
-		if(user){
-			req.logIn(user, function(err){
-				console.log(err);
-				if(err){
-					handleResponse(req, 500, 'error');
-				}
-			});
-		}
-	})(req, res, next);
-});
-
-function handleResponse(res, code, statusMsg){
-	res.status(code).json({
-		status: statusMsg
+module.exports = (passport) => {
+	router.post('/register', authHelpers.loginRedirect, (req, res, next) => {
+		passport.authenticate('local', (err, user, info) => {
+			if(user)
+				handleResponse(res, 400, 'You already signed up');
+			else{
+				return userHelpers.createUser(req, res);
+			}
+			
+		})(req, res, next);
 	});
-}
 
-module.exports = router;
+	router.post('/login', authHelpers.loginRedirect, (req, res, next) => {
+		passport.authenticate('local', (err, user, info) => {
+			if(err){
+				handleResponse(res, 500, 'error');
+			}
+
+			if(!user){
+				handleResponse(res, 400, 'User not found');
+			}
+
+			if(user){
+				req.logIn(user, function(err){
+					if(err){
+						handleResponse(res, 500, 'error');
+					}
+					handleResponse(res, 200, 'success');
+				});
+			}
+		})(req, res, next);
+	});
+
+	function handleResponse(res, code, statusMsg){
+		res.status(code).json({
+			status: statusMsg
+		});
+	}
+
+	return router;
+};
 

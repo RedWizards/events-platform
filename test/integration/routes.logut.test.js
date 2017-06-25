@@ -13,8 +13,8 @@ var knex = require('../../db/knex');
 describe('GET /logout', function(){
 	it('should logout a user', (done) => {
 		passportStub.login({
-			user_emailAddress: 'ebcedillo@gmail.com',
-			user_password: 'T3chEvents'
+			user_emailAddress: 'redperiabras@gmail.com',
+			user_password: 'asdf'
 		})
 		chai.request(server)
 			.get('/logout')
@@ -27,13 +27,13 @@ describe('GET /logout', function(){
 				done();
 			});
 	});
-	it('should throw an error if a user is logged in', (done) => {
+	it('should throw an error if a user is not logged in', (done) => {
 		chai.request(server)
 			.get('/logout')
 			.end((err, res) => {
 				should.exist(err);
 				res.redirects.length.should.eql(0);
-				res.status.should.eql(401);
+				res.status.should.eql(400);
 				res.type.should.eql('application/json');
 				res.body.status.should.eql('Please Log In');
 				done();
