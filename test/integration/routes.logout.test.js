@@ -15,7 +15,7 @@ describe('GET /logout', function(){
 		passportStub.login({
 			user_emailAddress: 'redperiabras@gmail.com',
 			user_password: 'asdf'
-		})
+		});
 		chai.request(server)
 			.get('/logout')
 			.end((err, res) => {
@@ -37,6 +37,6 @@ describe('GET /logout', function(){
 				res.type.should.eql('application/json');
 				res.body.status.should.eql('Please Log In');
 				done();
-			})
-	})
+			});
+	});
 });

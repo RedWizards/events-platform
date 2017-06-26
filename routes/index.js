@@ -8,11 +8,11 @@ router.get('/', function(req, res, next) {
 	res.render('index');
 });
 
-router.get('/register', function(req, res, next){
+router.get('/register', authHelpers.loginRedirect, function(req, res, next){
 	res.render('client/sign-up');
 });
 
-router.get('/login', function(req, res, next){
+router.get('/login', authHelpers.loginRedirect, function(req, res, next){
 	res.render('client/log-in');
 });
 
@@ -23,7 +23,7 @@ router.get('/logout', authHelpers.loginRequired, function(req, res, next){
 	});
 });
 
-router.get('/home', function(req, res, next) {
+router.get('/home', authHelpers.loginRequired, function(req, res, next) {
 	res.render('client/home');
 });
 

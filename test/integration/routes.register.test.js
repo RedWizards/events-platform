@@ -15,6 +15,7 @@ passportStub.install(server);
 describe('POST /auth/register', () => {
 
 	it('should register a user', (done) => {
+		// knex('user').where({user_emailAddress: 'ebcedillo@gmail.com'}).del();
 		chai.request(server)
 			.post('/auth/register')
 			.send({
@@ -42,6 +43,8 @@ describe('POST /auth/register', () => {
 			.post('/auth/register')
 			.send({
 				user_emailAddress: 'redperiabras@gmail.com',
+				user_firstName: 'Redentor',
+				user_lastName: 'Periabras',
 				user_password: 'asdf'
 			})
 			.end((err, res) => {
@@ -60,6 +63,8 @@ describe('POST /auth/register', () => {
 			.post('/auth/register')
 			.send({
 				user_emailAddress: 'redperiabras@gmail.com',
+				user_firstName: 'Redentor',
+				user_lastName: 'Periabras',
 				user_password: 'asdf'
 			})
 			.end((err, res) => {

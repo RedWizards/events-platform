@@ -1,11 +1,12 @@
-'use strict';
-
 var bcrypt = require('bcrypt');
 var db = require('../knex.js');
 
 function users() {
 	return db('user')
-	    .returning('*');	
+	    .returning('*')
+	    .then(result => {
+	    	return result;
+	    });	
 }
 
 function userById(id){
@@ -35,13 +36,12 @@ function createUser(req, res) {
 			user_firstName: req.body.user_firstName,
 			user_lastName: req.body.user_lastName,
 			user_emailAddress: req.body.user_emailAddress,
-			user_password: req.body.user_password
-		})
-		.returning('*')
+			user_password: hash
+		}, '*')
 		.then((user) => {
 			res.status(200).json({
 				status: 'success'
-			})
+			});
 		})
 		.catch((err) => {
 			console.log(err);

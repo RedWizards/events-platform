@@ -9,6 +9,7 @@ module.exports = {
       password : '12345',
       database : 'events-platform'
     },
+    pool: { min: 0, max: 7 },
     migrations: {
       directory: __dirname + '/db/migrations'
     },
@@ -24,6 +25,7 @@ module.exports = {
       password : '12345',
       database : 'events-platform'
     },
+    pool: { min: 0, max: 7 },
     migrations: {
       directory: __dirname + '/db/migrations'
     },
@@ -34,6 +36,7 @@ module.exports = {
   production: {
     client: 'pg',
     connection: process.env.DATABASE_URL,
+    pool: { min: 0, max: 7 },
     migrations: {
       directory: __dirname + '/db/migrations'
     },

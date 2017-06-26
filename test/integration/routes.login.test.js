@@ -47,7 +47,7 @@ describe('POST /auth/login', function(){
 			});
 	});
 
-	it('should throw an error if a user is already logged in', (done) => {
+	it('should redirect to home if the user is already l', (done) => {
 		passportStub.login({
 			user_emailAddress: 'redperiabras@gmail.com',
 			user_password: '$2a$10$ZlT6wMb4UQ19SYb8p9kbU..FE.ZAJhnijPat4PYz.AFp9lZW/Ikkq'
