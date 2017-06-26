@@ -1,6 +1,161 @@
 extends ../layout/main-layout
 
 block content
+
+	body
+		if (locals.err)
+			div.alert.alert-warning
+				strong err.msg
+
+		.wrapper.login-wrapper
+			.black-filter
+
+				.container.text-center
+
+					a(href='/')
+						img(src='/images/redwizard.png' alt='RED Wizard Logo' width='100px' height='100px')
+					#login-brand
+						p#top-title
+							b RED Wizard
+							span EVENTS PLATFORM
+
+				.container
+
+					.row.login-row
+
+						.col-sm-10.col-sm-offset-1.card-outer-col
+
+							.col-md-2.col-sm-1
+							//- Spacer
+
+							.col-md-8.col-sm-10
+								.card-container.manual-flip.card-login
+
+									.card
+
+										.front.regi-card
+
+											.header
+												h3.text-center WELCOME
+
+											.content
+
+												.main
+
+													//- Log in form
+
+													form#login-form(action='/auth/login' method='post')
+														.form-group
+															label(for='email') Email Address
+															input#email.form-control(type='email' name='user_emailAddress')
+														.form-group
+															label(for='pwd') Password
+															input#pwd.form-control(type='password' name='user_password')
+														.btn-login
+															button#btn-login.btn.btn-default.btn-square(type='submit') Log In
+														.text-center.or
+															span - or -
+
+													//- Log in form -end
+
+													.btn-fb
+														button#btn-fb.btn.btn-square(onclick='#') Log In with Facebook
+
+												.footer
+													span Doesn't have an account? 
+													a.btn.rotate-link(onclick='rotateCard(this)')
+														b Sign Up
+
+										//- .front.regi-card
+
+										.back
+
+											.header
+												h3.text-center SIGN UP
+
+											.content
+
+												.main
+
+													//- Sign up Form
+
+													form#reg-form(action='/auth/register' method='post')
+														.col-sm-6.col-md-6.col-lg-6.sign-col1#sign-col1
+															.form-group
+																label(for='fname') First Name
+																input#fname.form-control(type='text' name='user_firstName' placeholder='First Name')
+															.form-group
+																label(for='email') Email Address
+																input#email.form-control(type='email' name='user_emailAddress' placeholder='Email Address')
+														.col-sm-6.col-md-6.col-lg-6.sign-col2#sign-col2
+															.form-group
+																label(for='lname') Last Name
+																input#lname.form-control(type='text' name='user_lastName' placeholder='Last Name')
+															.form-group
+																label(for='pwd') Password
+																input#pwd.form-control(type='password' name='user_password'  placeholder='Password')
+														.btn-signup
+															button#btn-signup.btn.btn-default.btn-square(type='submit') Submit
+														.text-center.or
+															span - or -
+	                                                  
+													//- Sign up Form - end
+
+													.btn-fb
+														button#btn-fb.btn.btn-square(onclick='#') Sign Up with Facebook
+
+												.footer
+													span Already have an account? 
+													a.btn.rotate-link(onclick='rotateCard(this)')
+														b Log In
+
+										//- .back
+									
+									//- .card
+
+							.col-md-2.col-sm-1
+							//- Spacer
+
+			//- .black-filter
+
+			footer.footer.footer-black.footer-login
+				.container
+
+					nav.pull-left
+						ul
+							li
+								a(href='#') RED Wizard Events Management
+							li
+								a(href='index.html#about') ABOUT
+							li
+								a(href='index.html#events') EVENTS
+							li
+								a(href='index.html#contact-us') CONTACT US
+							li
+								a(href='#')
+									span.ti-facebook
+							li
+								a(href='#')
+									span.ti-twitter-alt
+							li
+								a(href='#')
+									span.ti-instagram
+
+					.copyright.pull-right
+						span &copy; All Rights Reserved 2017
+
+			//- footer - end
+
+	//- body - end
+
+block body-scripts
+	script(src='javascripts/rotate-card.js')
+
+
+
+
+
+//-. block content
 	.container
 		h1 Log In!
 		if (locals.err)
