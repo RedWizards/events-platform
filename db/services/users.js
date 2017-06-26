@@ -35,7 +35,7 @@ function createUser(req, res) {
 			user_firstName: req.body.user_firstName,
 			user_lastName: req.body.user_lastName,
 			user_emailAddress: req.body.user_emailAddress,
-			user_password: req.body.user_password
+			user_password: hash
 		})
 		.returning('*')
 		.then((user) => {
