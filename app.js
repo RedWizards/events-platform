@@ -34,15 +34,22 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-var routes = require('./routes/index');
 var auth = require('./routes/auth')(passport);
-var client = require('./routes/client-api');
-var admin = require('./routes/admin-api');
+var client = require('./routes/client');
+var clientAPI = require('./routes/client-api');
+var admin = require('./routes/admin');
+var adminAPI = require('./routes/admin-api');
 
-app.use('/', routes);
+//API FOR AUTHENTICATION
 app.use('/auth', auth);
-app.use('/api', client);
-app.use('/admin-api', admin);
+
+//for client side routes
+app.use('/', client);
+app.use('/api', clientAPI);
+
+//for admin side routes
+app.use('/admin', admin);
+app.use('/admin/api/', adminAPI);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

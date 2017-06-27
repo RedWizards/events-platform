@@ -5,33 +5,45 @@ var authHelpers = require('../auth/_helpers');
 var userHelpers = require('../db/services/users');
 
 module.exports = (passport) => {
-	router.post('/register', authHelpers.loginRedirect, (req, res, next) => {
-		passport.authenticate('local', (err, user, info) => {
-			if(user)
-				handleResponse(res, 400, 'You already signed up');
-			else{
-				return userHelpers.createUser(req, res);
-			}
-			
-		})(req, res, next);
+	router.post('/register', authHelpers.loginRedirect, authHelpers.checkUser, (req, res, next) => {
+		return userHelpers.createUser(req.body)
+			.then(() => {
+				passport.authenticate('local', (err, user, info) => {
+					if(user){
+						req.logIn(user, function(err){
+							if(err){
+								handleResponse(res, 500, err.message);
+							}
+							res.redirect('/home');
+							// handleResponse(res, 200, 'success');
+						});
+					}
+				})(req, res, next);
+			})
+			.catch((err) => {
+				res.status(500).json({
+					status: err.message
+				})
+			});
 	});
 
 	router.post('/login', authHelpers.loginRedirect, (req, res, next) => {
 		passport.authenticate('local', (err, user, info) => {
 			if(err){
-				handleResponse(res, 500, 'error');
+				handleResponse(res, 500, err.message);
 			}
 
 			if(!user){
-				handleResponse(res, 400, 'User not found');
+				handleResponse(res, 404, 'User not found');
 			}
 
 			if(user){
 				req.logIn(user, function(err){
 					if(err){
-						handleResponse(res, 500, 'error');
+						handleResponse(res, 500, err.message);
 					}
-					handleResponse(res, 200, 'success');
+					res.redirect('/home');
+					// handleResponse(res, 200, 'success');
 				});
 			}
 		})(req, res, next);

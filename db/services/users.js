@@ -1,58 +1,59 @@
-var bcrypt = require('bcrypt');
 var db = require('../knex.js');
+var users = db('user');
 
-function users() {
-	return db('user')
-	    .returning('*')
-	    .then(result => {
-	    	return result;
-	    });	
+var bcrypt = require('bcrypt');
+
+function allUsers(){
+	return users
+		.then(result => {
+			return result;
+		})
+		.catch(err => {
+			return err;
+		});
 }
 
 function userById(id){
-	return db('user')
-		.where({'id': id})
-		.returning('*')
+	return users.where({'id': id}, '*')
 		.then(result => {
 	        return result[0];
+	    })
+	    .catch(err => {
+	    	return err;
 	    });
 }
 
 function userByEmail(email){
-	return db('user')
-		.where({'user_emailAddress': email})
-		.returning('*')
+	return users.where({'user_emailAddress': email}, '*')
 		.then(result => {
 	        return result[0];
+	    })
+	    .catch(err => {
+	    	return err
 	    });
 }
 
-function createUser(req, res) {
+function createUser(data) {
 	const salt = bcrypt.genSaltSync();
-	const hash = bcrypt.hashSync(req.body.user_password, salt);
+	const hash = bcrypt.hashSync(data.user_password, salt);
 
-	return db('user')
+	return users
 		.insert({
-			user_firstName: req.body.user_firstName,
-			user_lastName: req.body.user_lastName,
-			user_emailAddress: req.body.user_emailAddress,
+			user_firstName: data.user_firstName,
+			user_lastName: data.user_lastName,
+			user_emailAddress: data.user_emailAddress,
 			user_password: hash
 		}, '*')
 		.then((user) => {
-			res.status(200).json({
-				status: 'success'
-			});
+			return user;
 		})
 		.catch((err) => {
-			console.log(err);
-			res.status(400).json({
-				status: err.message
-			});
+			return err;
 		});
 }
 
 module.exports = {
-	users,
+	allUsers,
 	userById,
 	userByEmail,
 	createUser
