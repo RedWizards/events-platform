@@ -1,8 +1,641 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.btn-square {
+	border-radius: 0;
 }
 
-a {
-  color: #00B7FF;
+.btn-semi {
+	border-radius: 5px;
+}
+
+.black-filter {
+	background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Banner Section */
+
+#landing-header-wrapper {
+	background-image: url('../images/header1.jpg');
+	background-attachment: fixed;
+	background-position: center center;
+}
+
+#landing-logo {
+	border:  0;
+}
+
+#landing-regi-btn {
+	border-radius: 0;
+}
+
+.banner-btn {
+	margin-top: 10px;
+}
+
+#banner-reg-btn {
+	padding-left: 0;
+	padding-right: 0;
+	margin-left: 10px;
+	margin-right: 10px; 
+	transition: all 0.5s ease;
+	color: white;
+	border-bottom: solid 1px rgba(0,0,0,0);
+}
+
+#banner-reg-btn:hover {
+	color: lightgrey;
+	border-bottom: solid 1px lightgrey;
+}
+
+.banner-section {
+    height: 100%;
+    padding-top: 220px;
+    text-align: center;
+    /*background-image: url('../img/header.jpg');*/
+}
+
+.banner-title {
+	transition: all;
+	padding: 10px 0;
+	margin: 10px 320px;
+	border: solid 5px white;
+	font-size: 45px;
+	color: white;
+}
+
+@media (max-width: 1024px) {
+	.banner-title {
+		font-size: 35px;
+		margin: 10px 270px;
+	}
+}
+
+@media (max-width: 768px) {
+	.banner-title {
+		font-size: 25px;
+		margin: 10px 200px;
+		border: solid 4px white;
+	}
+}
+
+@media (max-width: 425px) {
+	.banner-title {
+		font-size: 25px;
+		margin: 10px 20px;
+		border: solid 3px white;
+	}
+}
+
+#landing-title-sub {
+	font-weight: bold;
+}
+
+/* Main Content */
+
+.section-title {
+	padding-bottom: 20px;
+}
+
+.landing-card-holder {
+	padding:  0;
+}
+
+.landing-card{
+	box-shadow: none;
+}
+
+#about-card {
+	height: 750px;
+	background-color: white;
+	padding-top: 100px;
+}
+
+#events-card {
+	height: 100%;
+	background-color: lightgray;
+	padding-top: 100px;
+	padding-bottom: 100px;
+}
+
+#contact-card {
+	padding-bottom: 70px;
+	background-color: white;
+	padding-top: 70px;
+}
+
+.sendmsg-btn {
+	margin-top: 20px;
+}
+
+
+/* Footer Section */
+
+.footer-black {
+	background-color: #1a1a1a;
+}
+
+#arrow-top {
+	color:  white;
+}
+
+#arrow-top + .tooltip > .tooltip-inner {
+      /*background-color: #1a1a1a; */
+      color: #FFFFFF;
+      padding: 10px;
+      font-size: 12px;
+}
+
+/* EXPERIMENT */
+
+#letter {
+	transition: all 1s ease;
+}
+
+#letter:hover {
+	color: firebrick;
+	text-shadow: 0 0 50px white;
+}
+
+/* ----------------------- Login Style ----------------------- */
+
+#top-title {
+	font-size: 20px;
+	margin-bottom: 0;
+}
+
+#login-brand {
+	margin-bottom: 10px;
+	color: #fff;
+}
+
+.login-row {
+	margin-bottom: 30px;
+}
+
+@media (max-width: 425px) {
+
+	#top-title {
+		font-size: 15px;
+	}
+
+}
+
+.login-wrapper {
+	background-image: url('../images/header2.jpg');
+	background-position: center center;
+	background-size: cover;
+	margin: 0;
+	padding-top: 0;
+    z-index: 0;
+}
+
+.front, .back {
+	height: 490px;
+}
+
+.card-outer-col {
+	height: 500px;
+}
+
+@media (max-width: 425px) {
+
+	.front, .back {
+		height: 640px;
+	}
+
+	.card-outer-col {
+		height: 650px;
+	}
+
+}
+
+#sign-col1 {
+	padding: 0 5px 0 0;
+}
+
+#sign-col2 {
+	padding: 0 0 0 5px;
+}
+
+.sign-col1 {
+	padding: 0;
+}
+
+.sign-col2 {
+	padding: 0;
+}
+
+@media (max-width: 768px) {
+	.sign-col1 {
+		padding: 0 5px 0 0 	;
+	}
+
+	.sign-col2 {
+		padding: 0 0 0 5px;
+	}
+}
+
+@media (max-width: 425px) {
+	.sign-col1 {
+		padding: 0;
+	}
+
+	.sign-col2 {
+		padding: 0;
+	}
+}
+
+.rotate-link {
+	background: none;
+	border:  0;
+	padding: 0 0 2px 0;
+	transition: border 0.5s ease;
+}
+
+.rotate-link:hover {
+	background: none;
+	color: #309191;
+}
+
+.card-login {
+	height: 450px;
+}
+
+.regi-card {
+	padding: 0 100px;
+}
+
+#btn-login {
+	width: 100%;
+	margin-top: 15px;
+}
+
+#btn-signup {
+	width: 100%;
+	margin-top: 15px;
+}
+
+@media (max-width: 768px) {
+	.regi-card {
+		padding: 0 30px;
+	}
+}
+
+@media (max-width: 425px) {
+	.regi-card {
+		padding: 0;
+	}
+}
+
+.or {
+	margin:  10px 0;
+	color: #66615b;
+}
+
+#btn-fb {
+	transition: background-color 0.5s ease;
+	width: 100%;
+	background-color: #3b5998;
+	color: white;
+	border: solid 2px #3b5998;
+}
+
+#btn-fb:hover {
+	background-color: #4b69a8;
+	border-color: #4b69a8;
+}
+
+#btn-fb:active {
+	background-color: #2b4b76;
+	border-color: #2b4b76;
+}
+
+#page-banner {
+	padding-top: 20px;
+}
+
+.form-control {
+	transition: all 0.5s ease;
+	border:  solid 2px #bfbfbf;
+}
+
+.form-control:focus {
+	border: solid 2px #4e737f;
+}
+
+.form-control:hover {
+	border: dashed 2px #4e737f;
+}
+
+.footer-login {
+	z-index: -1;
+	background-attachment: fixed;
+  	position: relative;
+}
+
+/* --------------------------- Rotating Card Style ------------------------- */
+
+.btn:active{
+    outline: 0 !important;
+}
+
+/* Entire container, keeps perspective */
+
+.card-container {
+	  -webkit-perspective: 800px;
+   -moz-perspective: 800px;
+     -o-perspective: 800px;
+        perspective: 800px;
+        margin-bottom: 30px;
+}
+
+/* Flip the pane when hovered */
+
+.card-container:not(.manual-flip):hover .card,
+.card-container.hover.manual-flip .card{
+	-webkit-transform: rotateY( 180deg );
+-moz-transform: rotateY( 180deg );
+ -o-transform: rotateY( 180deg );
+    transform: rotateY( 180deg );
+}
+
+.card-container.static:hover .card,
+.card-container.static.hover .card {
+	-webkit-transform: none;
+-moz-transform: none;
+ -o-transform: none;
+    transform: none;
+}
+
+/* Flip speed goes here */
+
+.card {
+	 -webkit-transition: -webkit-transform .5s;
+   -moz-transition: -moz-transform .5s;
+     -o-transition: -o-transform .5s;
+        transition: transform .5s;
+-webkit-transform-style: preserve-3d;
+   -moz-transform-style: preserve-3d;
+     -o-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+	position: relative;
+}
+
+/* Hide back of pane during swap */
+
+.front, .back {
+	-webkit-backface-visibility: hidden;
+   -moz-backface-visibility: hidden;
+     -o-backface-visibility: hidden;
+        backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #FFF;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.20);
+}
+
+/* Front pane, placed above back */
+
+.front {
+	z-index: 2;
+}
+
+/* Back, initially hidden pane */
+
+.back {
+		-webkit-transform: rotateY( 180deg );
+   -moz-transform: rotateY( 180deg );
+     -o-transform: rotateY( 180deg );
+        transform: rotateY( 180deg );
+        z-index: 3;
+}
+
+.card{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 4px;
+    color: #444444;
+}
+
+.card-container, .front, .back {
+	width: 100%;
+	/*height: 420px;*/
+	border-radius: 4px;
+}
+
+.card .cover{
+    height: 105px;
+    overflow: hidden;
+    border-radius: 4px 4px 0 0;
+}
+
+.card .cover img{
+    width: 100%;
+}
+
+.card .user{
+    border-radius: 50%;
+    display: block;
+    height: 120px;
+    margin: -55px auto 0;
+    overflow: hidden;
+    width: 120px;
+}
+
+.card .user img{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 4px solid #FFFFFF;
+    width: 100%;
+}
+
+.card .content{
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: none;
+    padding: 10px 20px 20px;
+}
+
+.card .content .main {
+    min-height: 160px;
+}
+
+.card .name {
+    font-size: 22px;
+    line-height: 28px;
+    margin: 10px 0 0;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.card h5{
+    margin: 5px 0;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.card .profession{
+    color: #999999;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.card .footer {
+    border-top: 1px solid #EEEEEE;
+    color: #999999;
+    margin: 30px 0 0;
+    padding: 10px 0 0;
+    text-align: center;
+}
+
+.card .footer .social-links{
+    font-size: 18px;
+}
+
+.card .footer .social-links a{
+    margin: 0 7px;
+}
+
+.card .footer .btn-simple{
+    margin-top: -6px;
+}
+
+.card .header {
+    padding: 15px 20px;
+    height: 90px;
+}
+
+.card .motto{
+    border-bottom: 1px solid #EEEEEE;
+    color: #999999;
+    font-size: 14px;
+    font-weight: 400;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.card .stats-container{
+	width: 100%;
+	margin-top: 50px;
+}
+
+.card .stats{
+	display: block;
+	float: left;
+	width: 33.333333%;
+	text-align: center;
+}
+
+.card .stats:first-child{
+	border-right: 1px solid #EEEEEE;
+}
+
+.card .stats:last-child{
+	border-left: 1px solid #EEEEEE;
+}
+
+.card .stats h4{
+	font-weight: 300;
+	margin-bottom: 5px;
+}
+
+.card .stats p{
+	color: #777777;
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .front, .back{
+        -ms-backface-visibility: visible;
+        backface-visibility: visible;
+    }
+
+    .back {
+        visibility: hidden;
+        -ms-transition: all 0.2s cubic-bezier(.92,.01,.83,.67);
+    }
+    .front{
+        z-index: 4;
+    }
+    .card-container:not(.manual-flip):hover .back,
+    .card-container.manual-flip.hover .back{
+        z-index: 5;
+        visibility: visible;
+    }
+}
+
+/* ---------------- Plug Ins Styles --------------------- */
+
+@media (min-width: 992px){
+    .typo-line{
+        padding-left: 140px;
+        margin-bottom: 40px;
+        position: relative;
+    }
+
+    .typo-line .category{
+        transform: translateY(-50%);
+        top: 50%;
+        left: 0px;
+        position: absolute;
+    }
+}
+
+.icon-section {
+	margin: 0 0 3em;
+	clear: both;
+	overflow: hidden;
+}
+
+.icon-container {
+	width: 240px;
+	padding: .7em 0;
+	float: left;
+	position: relative;
+	text-align: left;
+}
+
+.icon-container [class^="ti-"],
+.icon-container [class*=" ti-"] {
+	color: #000;
+	position: absolute;
+	margin-top: 3px;
+	transition: .3s;
+}
+
+.icon-container:hover [class^="ti-"],
+.icon-container:hover [class*=" ti-"] {
+	font-size: 2.2em;
+	margin-top: -5px;
+}
+
+.icon-container:hover .icon-name {
+	color: #000;
+}
+
+.icon-name {
+	color: #aaa;
+	margin-left: 35px;
+	font-size: .8em;
+	transition: .3s;
+}
+
+.icon-container:hover .icon-name {
+	margin-left: 45px;
+}
+
+.places-buttons .btn{
+    margin-bottom: 30px
+}
+
+.sidebar .nav > li.active-pro{
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
+}
+
+.sidebar .nav > li.active-pro a{
+    background: rgba(255, 255, 255, 0.14);
+    opacity: 1;
+    color: #FFFFFF;
+}
+
+.table-upgrade td:nth-child(2),
+.table-upgrade td:nth-child(3){
+    text-align: center;
 }
