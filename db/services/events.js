@@ -1,67 +1,95 @@
 var db = require('../knex.js');
-var events = db('event');
 
-function allEvents(){
+var events = db('event');
+var registration = db('registration')
+
+//**checked
+function allEvents(res){
 	return events
 		.then(result => {
-			console.log(result);
-			return result;
+			res.status(200).json(result);
 		})
 		.catch(err => {
 			console.log(err);
-			return err;
+			handleResponse(res, 500, 'error');
 		});
 }
 
-function eventById(id){
+function eventById(res, id){
 	return events
 		.where('id', id)
 		.then(result => {
-			return result;
+			handleResponse(res, 200, 'success', result[0]);
 		})
 		.catch(err => {
-			return err;
+			console.log(err);
+			handleResponse(res, 500, 'error');
 		});
 }
 
-function createEvent(data) {
+//**checked
+function createEvent(res, data) {
 	return events.insert(data, '*')
 		.then(result => {
-			return result[0];
+			handleResponse(res, 200, 'success', result[0]);
 		})
 		.catch(err => {
-			return err;
+			console.log(err);
+			handleResponse(res, 500, 'error');
 		});
 }
 
-function updateEvent(id, data){
+function updateEvent(res, data){
 	return events
 		.where('id', id)
 		.update(data, '*')
 		.then(result => {
-			return result[0];
-		})
-		.catch(err => {
-			return err
+			handleResponse(res, 200, 'success', result);
 		});
 }
 
-function deleteEvent(id){
-	return events.
-		.where('id', id)
+//**checked
+function deleteEvent(res, id){
+	return events
+		.where({'id': id})
 		.del()
 		.then(result => {
-			return result;
+			console.log(result);
+			if(result == 1)
+				handleResponse(res, 200, 'success');
+			else
+				handleResponse(res, 404, 'Event not found');
 		})
 		.catch(err => {
-			return err
+			console.log(err);
+			handleResponse(res, 500, 'error');
 		});
+}
+
+function register(res, data){
+	return registration
+		.insert(data, '*')
+		.then(result => {
+			handleResponse(res, 200, 'success', result);
+		})
+		.catch(err => {
+			console.log(err);
+			handleResponse(res, 500, 'error');
+		});
+}
+
+function handleResponse(res, code, msg, data){
+	res.status(code).json({
+		status: msg,
+		data: data
+	});
 }
 
 module.exports = {
 	allEvents,
 	eventById,
 	createEvent,
-	deleteEvent
+	deleteEvent,
 	updateEvent,
+	register
 }

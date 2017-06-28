@@ -1,26 +1,21 @@
 var express = require('express');
 var router = express.Router();
 
-var authUtil = ('../auth/_helpers.js');
-var userUtil = ('../db/services/users');
-var eventUtil = ('../db/services/events');
+var authUtil = require('../auth/_helpers.js');
+var userUtil = require('../db/services/users');
+var eventUtil = require('../db/services/events');
 
 router.get('/events', (req, res, next) => {
-	if(eventUtil.allEvents);
-		
-	res.status(200).json({
-		status: 'success'
-	});
+	return eventUtil.allEvents(res)
+		.catch(err => {
+			res.status(500).json({
+				status: 'err'
+			});
+		});
 });
 
-router.post('/event', (req, res, next) => {
-	return eventUtil.createEvent(req.body)
-		.then(response => {
-			if(response)
-				res.status(200).json({
-					status: 'success'
-				});
-		})
+router.post('/events', (req, res, next) => {
+	return eventUtil.createEvent(res, req.body)
 		.catch(err => {
 			console.log(err);
 			res.status(500).json({
@@ -44,13 +39,8 @@ router.post('/event', (req, res, next) => {
 // 		});
 // });
 
-router.delete('/event', (req, res, next) => {
-	return eventUtil.deleteEvent(req.body.id)
-		.then(response => {
-			res.status(200).json({
-				status: 'success'
-			});
-		})
+router.delete('/events', (req, res, next) => {
+	return eventUtil.deleteEvent(res, req.query.id)
 		.catch(err => {
 			console.log(err);
 			res.status(500).json({

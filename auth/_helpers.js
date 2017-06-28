@@ -34,7 +34,7 @@ function comparePass(userPassword, databasePassword){
 function handleResponse(res, code, statusMsg){
 	res.status(code).json({
 		status: statusMsg
-	})
+	});
 }
 
 module.exports = {
