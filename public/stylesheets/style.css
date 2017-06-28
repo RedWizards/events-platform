@@ -223,6 +223,25 @@
 	padding: 0;
 }
 
+@media (max-width: 425px) {
+
+	#sign-col1 {
+		padding: 0;
+	}
+
+	#sign-col2 {
+		padding: 0;
+	}
+	
+	.sign-col1 {
+		padding: 0;
+	}
+
+	.sign-col2 {
+		padding: 0;
+	}
+}
+
 @media (max-width: 768px) {
 	.sign-col1 {
 		padding: 0 5px 0 0 	;
@@ -233,15 +252,6 @@
 	}
 }
 
-@media (max-width: 425px) {
-	.sign-col1 {
-		padding: 0;
-	}
-
-	.sign-col2 {
-		padding: 0;
-	}
-}
 
 .rotate-link {
 	background: none;
