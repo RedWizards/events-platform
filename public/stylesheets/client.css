@@ -1,0 +1,57 @@
+/* --------------------------- Client Home Page --------------------------- */
+
+.navbar .navbar-brand {
+    font-weight: 600;
+    margin: 5px 0px;
+    padding: 20px 15px;
+    font-size: 20px;
+}
+
+@media (max-width: 1024px){
+
+	.navbar .navbar-brand {
+	    height: 40px;
+	    padding: 15px;
+	}
+
+}
+
+#logout-btn:focus {
+	outline: 0;
+}
+
+.dropdown-menu > li > a.user-dropdown {
+	transition: all 0.5s ease;
+	border-radius: 0;
+}
+
+.dropdown-menu > li > a.user-dropdown:hover {
+    background-color: #68B3C8;
+    color: rgba(255, 255, 255, 0.7);
+    opacity: 1;
+    text-decoration: none; 
+}
+/*
+.dropdown-menu > li > a.user-dropdown:focus {
+    background-color: #4e737f;
+    color: #fff;
+    opacity: 1;
+    text-decoration: none; 
+}
+*/
+/* Footer Section */
+
+.footer-black {
+	background-color: #1a1a1a;
+}
+
+#arrow-top {
+	color:  white;
+}
+
+#arrow-top + .tooltip > .tooltip-inner {
+      /*background-color: #1a1a1a; */
+      color: #FFFFFF;
+      padding: 10px;
+      font-size: 12px;
+}
